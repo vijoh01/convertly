@@ -2,6 +2,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import '../app/globals.css'
+import Head from 'next/head';
 
 const types = ["jpeg", "png", "bmp", "tiff", "webp", "gif", "ico", "jp2", "avif"];
 
@@ -122,67 +123,77 @@ function ImageConverter() {
   console.log(selectedTo);
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className='max-w-md mx-auto p-6 bg-white rounded-md shadow-md'>
-        {!isValidFormat(format) || format == null ? <p>Invalid format</p>
-          : (<div>
-            <h1 className="text-3xl font-semibold mb-4">{from.toUpperCase()} to {to.toUpperCase()} Converter</h1>
+    <>
+      <Head>
+        <title>{`${from.toUpperCase()} to ${to.toUpperCase()} Converter - Convertly`}</title>
+        <meta name="description" content={`Convert ${from.toUpperCase()} images to ${to.toUpperCase()} format with our online tool. Easy and fast conversion.`} />
+        <meta name="keywords" content={`${from}, ${to}, convert image, online converter, convert ${from}, ${from} to ${to}, from ${from} to ${to}`} />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={`https://yourdomain.com/${format}`} />
+      </Head>
 
-            <p>Convert  image from {from.toUpperCase()} to {to.toUpperCase()}</p>
+      <div className="flex justify-center items-center h-screen">
+        <div className='max-w-md mx-auto p-6 bg-white rounded-md shadow-md'>
+          {!isValidFormat(format) || format == null ? <p>Invalid format</p>
+            : (<div>
+              <h1 className="text-3xl font-semibold mb-4">{from.toUpperCase()} to {to.toUpperCase()} Converter</h1>
+
+              <p>Convert  image from {from.toUpperCase()} to {to.toUpperCase()}</p>
 
 
-            <div
-              className="border-dashed border-2 border-gray-300 p-4 mb-4 rounded-md relative"
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-            >
-              <p className="text-gray-500">
-                Drag & Drop your image here or{' '}
-                <label htmlFor="file-input" className="cursor-pointer text-blue-500">
-                  click to select
-                </label>
-              </p>
-              <input
-                id="file-input"
-                type="file"
-                className="hidden"
-                onChange={handleFileChange}
-              />
-              {file && <p className="mt-2 text-sm">{file.name}</p>}
+              <div
+                className="border-dashed border-2 border-gray-300 p-4 mb-4 rounded-md relative"
+                onDrop={handleDrop}
+                onDragOver={handleDragOver}
+              >
+                <p className="text-gray-500">
+                  Drag & Drop your image here or{' '}
+                  <label htmlFor="file-input" className="cursor-pointer text-blue-500">
+                    click to select
+                  </label>
+                </p>
+                <input
+                  id="file-input"
+                  type="file"
+                  className="hidden"
+                  onChange={handleFileChange}
+                />
+                {file && <p className="mt-2 text-sm">{file.name}</p>}
+              </div>
+              <p className=''>From:</p>
+              <select
+                value={selectedFrom}
+                onChange={handleFromChange}
+                className="w-full border p-2 mb-4 rounded-md"
+              >
+                {types.map((sort, index) => (
+                  <option key={index} value={sort}>{sort.toUpperCase()}</option>
+                ))}
+
+              </select>
+              <p className=''>To:</p>
+              <select
+                value={selectedTo}
+                onChange={handleToChange}
+                className="w-full border p-2 mb-5 rounded-md"
+              >
+                {types.map((sort, index) => (
+                  <option key={index} value={sort}>{sort.toUpperCase()}</option>
+                ))}
+
+              </select>
+
+              <button
+                onClick={handleConvert}
+                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none"
+              >
+                Convert
+              </button>
             </div>
-            <p className=''>From:</p>
-            <select
-              value={selectedFrom}
-              onChange={handleFromChange}
-              className="w-full border p-2 mb-4 rounded-md"
-            >
-              {types.map((sort, index) => (
-                <option key={index} value={sort}>{sort.toUpperCase()}</option>
-              ))}
-
-            </select>
-            <p className=''>To:</p>
-            <select
-              value={selectedTo}
-              onChange={handleToChange}
-              className="w-full border p-2 mb-5 rounded-md"
-            >
-              {types.map((sort, index) => (
-                <option key={index} value={sort}>{sort.toUpperCase()}</option>
-              ))}
-
-            </select>
-
-            <button
-              onClick={handleConvert}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none"
-            >
-              Convert
-            </button>
-          </div>
-          )}
+            )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
