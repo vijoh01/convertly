@@ -74,7 +74,7 @@ const Home = () => {
         <meta name="description" content="Convert your images from one format to another quickly and easily with our online image converter tool." />
         <meta name="keywords" content="image converter, jpg to png, png to jpg, online image converter, convert images" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://yourdomain.com" />
+        <link rel="canonical" href="https://convertly.org" />
 
       </Head>
       <Analytics/>
