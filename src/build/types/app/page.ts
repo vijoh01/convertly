@@ -1,4 +1,4 @@
-// File: C:\Users\Viktor\Desktop\convertimagery\src\app\page.tsx
+// File: C:\Users\Viktor\Desktop\convertly\src\app\page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
