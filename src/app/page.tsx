@@ -1,113 +1,124 @@
-import Image from 'next/image'
+"use client"
+import React, { useState } from 'react';
+import ImageConverter from '@/pages/[format]';
+import Ad from './components/ad';
 
-export default function Home() {
+const Home = () => {
+
+  const [file, setFile]: any = useState(null);
+  const [format, setFormat] = useState('jpg');
+
+  const handleFileChange = (e: any) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleFormatChange = (e: any) => {
+    setFormat(e.target.value);
+  };
+
+  const handleConvert = async () => {
+    if (!file) return;
+
+    const formData: any = new FormData();
+    formData.append('file', file);
+    formData.append('format', format);
+
+    try {
+      const response = await fetch('http://localhost:3000/api/convert', {
+        method: 'POST',
+        body: formData,
+      });
+
+      // Convert response to blob
+      const blob = await response.blob();
+
+      // Create a download link
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `converted.${format}`;
+      document.body.appendChild(a);
+
+      // Trigger a click on the link to start the download
+      a.click();
+
+      // Remove the link from the DOM
+      document.body.removeChild(a);
+
+      // Revoke the object URL to free up resources
+      window.URL.revokeObjectURL(url);
+
+      console.log('Conversion successful!');
+
+    } catch (error) {
+      console.error('Error during conversion:', error);
+    }
+  };
+
+  const handleDrop = (e: any) => {
+    e.preventDefault();
+    const droppedFile = e.dataTransfer.files[0];
+    setFile(droppedFile);
+  };
+
+  const handleDragOver = (e: any) => {
+    e.preventDefault();
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+    <div className='h-screen flex flex-col'>
+      <div className="flex justify-center items-center h-full">
+        <div className='max-w-md mx-auto p-6 bg-white rounded-md shadow-md'>
+          <h1 className="text-3xl font-semibold mb-4">Image Converter</h1>
+
+          <div
+            className="border-dashed border-2 border-gray-300 p-4 mb-4 rounded-md relative"
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+            <p className="text-gray-500">
+              Drag & Drop your image here or{' '}
+              <label htmlFor="file-input" className="cursor-pointer text-blue-500">
+                click to select
+              </label>
+            </p>
+            <input
+              id="file-input"
+              type="file"
+              className="hidden"
+              onChange={handleFileChange}
             />
-          </a>
+            {file && <p className="mt-2 text-sm">{file.name}</p>}
+          </div>
+
+          <select
+            value={format}
+            onChange={handleFormatChange}
+            className="w-full border p-2 mb-4 rounded-md"
+          >
+            <option value="jpg">JPG</option>
+            <option value="jpeg">JPEG</option>
+            <option value="png">PNG</option>
+            <option value="webp">WebP</option>
+            <option value="tiff">TIFF</option>
+            <option value="gif">GIF</option>
+            <option value="heic">HEIC</option>
+            <option value="heif">HEIF</option>
+            <option value="avif">AVIF</option>
+          </select>
+
+          <button
+            onClick={handleConvert}
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none"
+          >
+            Convert
+          </button>
         </div>
       </div>
+      <Ad />
+    </div>
+  );
+};
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
-}
+export default Home;
