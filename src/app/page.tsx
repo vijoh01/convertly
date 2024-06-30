@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import ImageConverter from '@/pages/[format]';
 import Ad from './components/ad';
 import Head from 'next/head';
+import { Analytics } from "@vercel/analytics/react"
 
 const Home = () => {
 
@@ -76,7 +77,7 @@ const Home = () => {
         <link rel="canonical" href="https://yourdomain.com" />
 
       </Head>
-
+      <Analytics/>
       <div className='h-screen flex flex-col'>
         <div className="flex justify-center items-center h-full">
           <div className='max-w-md mx-auto p-6 bg-white rounded-md shadow-md'>
