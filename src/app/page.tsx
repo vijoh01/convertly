@@ -75,7 +75,7 @@ const Home = () => {
         <meta name="keywords" content="image converter, jpg to png, png to jpg, online image converter, convert images" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://convertly.org" />
-
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3356299841997010" crossOrigin="anonymous"></script>
       </Head>
       <Analytics/>
       <div className='h-screen flex flex-col'>
