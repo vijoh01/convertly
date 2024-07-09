@@ -125,11 +125,11 @@ function ImageConverter() {
   return (
     <>
       <Head>
-        <title>{`${from.toUpperCase()} to ${to.toUpperCase()} Converter - Convertly`}</title>
-        <meta name="description" content={`Convert ${from.toUpperCase()} images to ${to.toUpperCase()} format with our online tool. Easy and fast conversion.`} />
-        <meta name="keywords" content={`${from}, ${to}, convert image, online converter, convert ${from}, ${from} to ${to}, from ${from} to ${to}`} />
+        <title>{`Convert ${from.toUpperCase()} to ${to.toUpperCase()} Online - Fast Image Converter | Convertly`}</title>
+        <meta name="description" content={`Convert ${from.toUpperCase()} to ${to.toUpperCase()} images online for free. Quick, easy, and high-quality image conversion with Convertly.`} />
+        <meta name="keywords" content={`convert ${from}, ${from} to ${to}, convert ${from} to ${to}, from ${from} to ${to}, convert image, online converter`} />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={`https://yourdomain.com/${format}`} />
+        <link rel="canonical" href={`https://convertly.org/${format}`} />
       </Head>
 
       <div className="flex justify-center items-center h-screen">
