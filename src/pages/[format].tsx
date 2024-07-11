@@ -218,11 +218,22 @@ export async function getServerSideProps(context:any) {
       if (from) {
         const fromResponse = await axios.get(`https://en.wikipedia.org/api/rest_v1/page/summary/${from}`);
         fromWiki = fromResponse.data.extract;
+        if (!(fromWiki.toLowerCase().includes('format') 
+          || fromWiki.toLowerCase().includes('file') 
+          || fromWiki.toLowerCase().includes('image'))) {
+          fromWiki = "No specific information about this image format."
+        }
+        
       }
 
       if (to) {
         const toResponse = await axios.get(`https://en.wikipedia.org/api/rest_v1/page/summary/${to}`);
         toWiki = toResponse.data.extract;
+        if (!(toWiki.toLowerCase().includes('format') 
+          || toWiki.toLowerCase().includes('file') 
+          || toWiki.toLowerCase().includes('image'))) {
+            toWiki = "No specific information about this image format."
+        }
       }
     }
   } catch (error) {
