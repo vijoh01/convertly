@@ -20,7 +20,7 @@ const RootLayout = ({ metadata = {}, children }: any) => {
   return (
     <>
       <Head>
-        <title>{mergedMetadata.title}</title>
+        <title>Free Online Image Converter - Quick and Easy Image Conversion | Convertly</title>
         <meta name="description" content={mergedMetadata.description || ''} />
         <meta name="keywords" content={mergedMetadata.keywords || ''} />
         <meta name="robots" content={mergedMetadata.robots || ''} />
