@@ -118,6 +118,13 @@ const ImageConverter = ({ fromWiki, toWiki }:any) => {
         <meta name="keywords" content={`convert ${from}, ${from} to ${to}, convert ${from} to ${to}, from ${from} to ${to}, convert image, online converter`} />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`https://convertly.org/${format}`} />
+        <meta name="google-adsense-account" content={'ca-pub-3356299841997010'} />
+        
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3356299841997010"
+          crossOrigin="anonymous"
+        ></script>
       </Head>
 
       <div className="flex justify-center items-center h-full">
