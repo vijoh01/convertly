@@ -16,12 +16,7 @@ const defaultMetadata: Metadata = {
   googleAdsenseAccount: 'ca-pub-3356299841997010'
 };
 
-type RootLayoutProps = {
-  metadata?: Partial<Metadata>;
-  children: React.ReactNode;
-};
-
-const RootLayout = ({ metadata = {}, children }: RootLayoutProps) => {
+const RootLayout = ({ metadata = {}, children }: any) => {
   const mergedMetadata: any = { ...defaultMetadata, ...metadata };
 
   return (
