@@ -12,7 +12,6 @@ const defaultMetadata: Metadata = {
   description: 'Use our free online image converter to quickly and easily convert your images between formats like JPG, PNG, and more. High-quality results in seconds.',
   keywords: 'free image converter, jpg to png, png to jpg, online image converter, convert images, image format conversion',
   robots: 'index, follow',
-  canonical: 'https://convertly.org',
   googleAdsenseAccount: 'ca-pub-3356299841997010'
 };
 
