@@ -25,9 +25,9 @@ const RootLayout = ({ metadata = {}, children }: any) => {
         <meta name="keywords" content={mergedMetadata.keywords || ''} />
         <meta name="robots" content={mergedMetadata.robots || ''} />
         <link rel="canonical" href={mergedMetadata.canonical || ''} />
-        {mergedMetadata.googleAdsenseAccount && (
-          <meta name="google-adsense-account" content={'ca-pub-3356299841997010'} />
-        )}
+    
+        <meta name="google-adsense-account" content={'ca-pub-3356299841997010'} />
+        
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3356299841997010"
