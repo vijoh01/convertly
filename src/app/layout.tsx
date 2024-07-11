@@ -24,7 +24,7 @@ const RootLayout = ({ metadata = {}, children }: any) => {
         <meta name="description" content={mergedMetadata.description || ''} />
         <meta name="keywords" content={mergedMetadata.keywords || ''} />
         <meta name="robots" content={mergedMetadata.robots || ''} />
-        <link rel="canonical" href={mergedMetadata.canonical || ''} />
+        <link rel="canonical" href={'https://convertly.org'} />
     
         <meta name="google-adsense-account" content={'ca-pub-3356299841997010'} />
         
