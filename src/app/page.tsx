@@ -4,6 +4,7 @@ import ImageConverter from '@/pages/[format]';
 import Ad from './components/ad';
 import Head from 'next/head';
 import { Analytics } from "@vercel/analytics/react"
+import WikiInfo from './components/WikiInfo';
 
 const Home = () => {
 
@@ -81,11 +82,18 @@ const Home = () => {
       <Analytics />
       <div className='h-screen flex flex-col'>
         <div className="flex justify-center items-center h-full">
-          <div className='max-w-md mx-auto p-6 bg-white rounded-md shadow-md'>
-            <h1 className="text-3xl font-semibold mb-4">Image Converter</h1>
+          <div className='max-w-5xl mx-auto p-6 bg-white rounded-md shadow-md'>
+
+            <div>
+              <h1 className="text-3xl font-semibold mb-4">Image Converter</h1>
+
+              <p className="mb-4">Convert your images quickly and easily with our free online image converter. Select your file, choose the desired format, and click convert to get high-quality results in seconds.</p>
+
+              {/* Rest of your component */}
+            </div>
 
             <div
-              className="border-dashed border-2 border-gray-300 p-4 mb-4 rounded-md relative"
+              className="border-dashed border-2 border-gray-300 p-4 pt-40 mb-4 rounded-md relative"
               onDrop={handleDrop}
               onDragOver={handleDragOver}
             >
@@ -129,6 +137,7 @@ const Home = () => {
           </div>
         </div>
         <Ad />
+
       </div>
     </>
   );

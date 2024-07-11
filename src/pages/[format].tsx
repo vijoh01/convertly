@@ -1,12 +1,12 @@
-"use client"
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import '../app/globals.css'
+import '../app/globals.css';
 import Head from 'next/head';
+import axios from 'axios';
 
 const types = ["jpeg", "png", "bmp", "tiff", "webp", "gif", "ico", "jp2", "avif"];
 
-function ImageConverter() {
+const ImageConverter = ({ fromWiki, toWiki }) => {
   const router = useRouter();
   const { format }: any = router.query;
 
@@ -25,20 +25,18 @@ function ImageConverter() {
       const newRoute = `${beforeTo}-to-${obj.to}`;
       router.replace(`/${newRoute}`);
     }
-
-  }
+  };
 
   useEffect(() => {
     setSelectedFrom(from);
     setSelectedTo(to);
-  }, [from, to])
+  }, [from, to]);
 
   const isValidFormat = (inputFormat: any) => {
     if (!inputFormat) return false;
 
     const [from, to] = inputFormat.split('-to-');
 
-    // Check if both from and to are in the types array and are different
     return types.includes(from.toLowerCase()) &&
       types.includes(to.toLowerCase()) &&
       from.toLowerCase() !== to.toLowerCase();
@@ -55,13 +53,11 @@ function ImageConverter() {
   const handleFromChange = (e: any) => {
     const [beforeTo, afterTo] = format.split('-to-');
 
-
     if (e.target.value !== afterTo) {
       setSelectedFrom(e.target.value);
       goToRoute({ from: e.target.value, to: null });
     }
-
-  }
+  };
 
   const handleToChange = (e: any) => {
     const [beforeTo, afterTo] = format.split('-to-');
@@ -85,27 +81,18 @@ function ImageConverter() {
         body: formData,
       });
 
-      // Convert response to blob
       const blob = await response.blob();
 
-      // Create a download link
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
       a.download = `converted.${selectedTo}`;
       document.body.appendChild(a);
-
-      // Trigger a click on the link to start the download
       a.click();
-
-      // Remove the link from the DOM
       document.body.removeChild(a);
-
-      // Revoke the object URL to free up resources
       window.URL.revokeObjectURL(url);
 
       console.log('Conversion successful!');
-
     } catch (error) {
       console.error('Error during conversion:', error);
     }
@@ -120,6 +107,7 @@ function ImageConverter() {
   const handleDragOver = (e: any) => {
     e.preventDefault();
   };
+
   console.log(selectedTo);
 
   return (
@@ -132,17 +120,23 @@ function ImageConverter() {
         <link rel="canonical" href={`https://convertly.org/${format}`} />
       </Head>
 
-      <div className="flex justify-center items-center h-screen">
-        <div className='max-w-md mx-auto p-6 bg-white rounded-md shadow-md'>
+      <div className="flex justify-center items-center h-full">
+        <div className='max-w-5xl mx-auto p-6 bg-white rounded-md shadow-md'>
           {!isValidFormat(format) || format == null ? <p>Invalid format</p>
             : (<div>
-              <h1 className="text-3xl font-semibold mb-4">{from.toUpperCase()} to {to.toUpperCase()} Converter</h1>
-
-              <p>Convert  image from {from.toUpperCase()} to {to.toUpperCase()}</p>
 
 
+
+              <div>
+              <h1 className="text-3xl font-semibold mb-4">{from.toUpperCase()} to {to.toUpperCase()} Image Converter</h1>
+
+              <p className="mb-4">Convert your images quickly and easily with our free online image converter. Select your file, choose the desired format, and click convert to get high-quality results in seconds.</p>
+              <p>Convert image from {from.toUpperCase()} to {to.toUpperCase()}</p>
+
+              {/* Rest of your component */}
+            </div>
               <div
-                className="border-dashed border-2 border-gray-300 p-4 mb-4 rounded-md relative"
+                className="border-dashed border-2 border-gray-300 p-4 pt-40 mb-4 rounded-md relative"
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
               >
@@ -169,7 +163,6 @@ function ImageConverter() {
                 {types.map((sort, index) => (
                   <option key={index} value={sort}>{sort.toUpperCase()}</option>
                 ))}
-
               </select>
               <p className=''>To:</p>
               <select
@@ -180,7 +173,6 @@ function ImageConverter() {
                 {types.map((sort, index) => (
                   <option key={index} value={sort}>{sort.toUpperCase()}</option>
                 ))}
-
               </select>
 
               <button
@@ -189,12 +181,53 @@ function ImageConverter() {
               >
                 Convert
               </button>
+
+              <div className="my-4 p-4 border rounded-md">
+                <h2 className="text-xl font-semibold mb-2">About {from.toUpperCase()}</h2>
+                <p>{fromWiki}</p>
+              </div>
+              <div className="my-4 p-4 border rounded-md">
+                <h2 className="text-xl font-semibold mb-2">About {to.toUpperCase()}</h2>
+                <p>{toWiki}</p>
+              </div>
             </div>
             )}
         </div>
       </div>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { format } = context.query;
+
+  let fromWiki = '';
+  let toWiki = '';
+
+  try {
+    if (format) {
+      const [from, to] = format.split('-to-');
+      
+      if (from) {
+        const fromResponse = await axios.get(`https://en.wikipedia.org/api/rest_v1/page/summary/${from}`);
+        fromWiki = fromResponse.data.extract;
+      }
+
+      if (to) {
+        const toResponse = await axios.get(`https://en.wikipedia.org/api/rest_v1/page/summary/${to}`);
+        toWiki = toResponse.data.extract;
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching Wikipedia content:', error);
+  }
+
+  return {
+    props: {
+      fromWiki,
+      toWiki,
+    },
+  };
 }
 
 export default ImageConverter;
