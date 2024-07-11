@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const types = ["jpeg", "png", "bmp", "tiff", "webp", "gif", "ico", "jp2", "avif"];
 
-const ImageConverter = ({ fromWiki, toWiki }) => {
+const ImageConverter = ({ fromWiki, toWiki }:any) => {
   const router = useRouter();
   const { format }: any = router.query;
 
@@ -198,7 +198,7 @@ const ImageConverter = ({ fromWiki, toWiki }) => {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context:any) {
   const { format } = context.query;
 
   let fromWiki = '';
