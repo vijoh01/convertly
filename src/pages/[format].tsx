@@ -208,8 +208,8 @@ const ImageConverter = ({ fromWiki, toWiki }:any) => {
 export async function getServerSideProps(context:any) {
   const { format } = context.query;
 
-  let fromWiki = '';
-  let toWiki = '';
+  let fromWiki = 'No specific information about this image format.';
+  let toWiki = 'No specific information about this image format.';
 
   try {
     if (format) {
