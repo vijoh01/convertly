@@ -18,7 +18,7 @@ const RootLayout = ({ metadata = {}, children }: any) => {
   const mergedMetadata: any = { ...defaultMetadata, ...metadata };
 
   return (
-    <>
+    <html>
       <Head>
         <title>Free Online Image Converter - Quick and Easy Image Conversion | Convertly</title>
         <meta name="description" content={mergedMetadata.description || ''} />
@@ -39,7 +39,7 @@ const RootLayout = ({ metadata = {}, children }: any) => {
           {children}
         </body>
       </html>
-    </>
+    </html>
   );
 };
 
