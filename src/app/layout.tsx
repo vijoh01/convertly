@@ -19,7 +19,7 @@ const RootLayout = ({ metadata = {}, children }: any) => {
 
   return (
     <html>
-      <Head>
+      <head>
         <title>Free Online Image Converter - Quick and Easy Image Conversion | Convertly</title>
         <meta name="description" content={mergedMetadata.description || ''} />
         <meta name="keywords" content={mergedMetadata.keywords || ''} />
@@ -33,7 +33,7 @@ const RootLayout = ({ metadata = {}, children }: any) => {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3356299841997010"
           crossOrigin="anonymous"
         ></script>
-      </Head>
+      </head>
       <html lang="en">
         <body className={inter.className}>
           {children}
