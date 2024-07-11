@@ -12,7 +12,6 @@ const defaultMetadata: Metadata = {
   description: 'Use our free online image converter to quickly and easily convert your images between formats like JPG, PNG, and more. High-quality results in seconds.',
   keywords: 'free image converter, jpg to png, png to jpg, online image converter, convert images, image format conversion',
   robots: 'index, follow',
-  googleAdsenseAccount: 'ca-pub-3356299841997010'
 };
 
 const RootLayout = ({ metadata = {}, children }: any) => {
@@ -27,7 +26,7 @@ const RootLayout = ({ metadata = {}, children }: any) => {
         <meta name="robots" content={mergedMetadata.robots || ''} />
         <link rel="canonical" href={mergedMetadata.canonical || ''} />
         {mergedMetadata.googleAdsenseAccount && (
-          <meta name="google-adsense-account" content={mergedMetadata.googleAdsenseAccount} />
+          <meta name="google-adsense-account" content={'ca-pub-3356299841997010'} />
         )}
         <script
           async
