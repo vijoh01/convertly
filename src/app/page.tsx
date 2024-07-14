@@ -70,15 +70,6 @@ const Home = () => {
 
   return (
     <>
-      <Head>
-        <title>Free Online Image Converter - Quick and Easy Image Conversion | Convertly</title>
-        <meta name="description" content="Use our free online image converter to quickly and easily convert your images between formats like JPG, PNG, and more. High-quality results in seconds." />
-        <meta name="keywords" content="free image converter, jpg to png, png to jpg, online image converter, convert images, image format conversion" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://convertly.org" />
-        <meta name="google-adsense-account" content="ca-pub-3356299841997010"></meta>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3356299841997010" crossOrigin="anonymous"></script>
-      </Head>
       <Analytics />
       <div className='h-screen flex flex-col'>
         <div className="flex justify-center items-center h-full">

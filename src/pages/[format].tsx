@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import '../app/globals.css';
 import Head from 'next/head';
 import axios from 'axios';
+import { Analytics } from '@vercel/analytics/react';
 
 const types = ["jpeg", "png", "bmp", "tiff", "webp", "gif", "ico", "jp2", "avif"];
 
@@ -126,7 +127,7 @@ const ImageConverter = ({ fromWiki, toWiki }:any) => {
           crossOrigin="anonymous"
         ></script>
       </Head>
-
+      <Analytics />
       <div className="flex justify-center items-center h-full">
         <div className='max-w-5xl mx-auto p-6 bg-white rounded-md shadow-md'>
           {!isValidFormat(format) || format == null ? <p>Invalid format</p>

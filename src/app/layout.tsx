@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import Head from 'next/head';
 import { Inter } from 'next/font/google';
 import './globals.css'; // Adjust path as necessary for your global styles
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -34,6 +35,7 @@ const RootLayout = ({ metadata = {}, children }: any) => {
           crossOrigin="anonymous"
         ></script>
       </head>
+      <Analytics />
       <html lang="en">
         <body className={inter.className}>
           {children}
