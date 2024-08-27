@@ -113,7 +113,7 @@ const ImageConverter = ({ fromWiki, toWiki }:any) => {
 
   return (
     <>
-      <Head>
+      <head>
         <title>{`Convert ${from.toUpperCase()} to ${to.toUpperCase()} Online - Fast Image Converter | Convertly`}</title>
         <meta name="description" content={`Convert ${from.toUpperCase()} to ${to.toUpperCase()} images online for free. Quick, easy, and high-quality image conversion with Convertly.`} />
         <meta name="keywords" content={`convert ${from}, ${from} to ${to}, convert ${from} to ${to}, from ${from} to ${to}, convert image, online converter`} />
@@ -126,7 +126,7 @@ const ImageConverter = ({ fromWiki, toWiki }:any) => {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3356299841997010"
           crossOrigin="anonymous"
         ></script>
-      </Head>
+      </head>
       <Analytics />
       <div className="flex justify-center items-center h-full">
         <div className='max-w-5xl mx-auto p-6 bg-white rounded-md shadow-md'>
