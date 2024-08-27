@@ -120,7 +120,14 @@ const ImageConverter = ({ fromWiki, toWiki }:any) => {
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`https://convertly.org/${format}`} />
         <meta name="google-adsense-account" content={'ca-pub-3356299841997010'} />
+
+        <link rel="alternate" href="https://convertly.org" hrefLang="en" />
         
+        <link rel="alternate" href="https://convertly.org/png-to-jpeg" hrefLang="en" /> 
+        <link rel="alternate" href="https://convertly.org/jpeg-to-png" hrefLang="en" /> 
+        <link rel="alternate" href="https://convertly.org/bmp-to-png" hrefLang="en" /> 
+        <link rel="alternate" href="https://convertly.org/png-to-webp" hrefLang="en" />
+        <link rel="sitemap" href="https://www.convertly.org/sitemap-0.xml" type="application/xml" />
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3356299841997010"
