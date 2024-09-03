@@ -69,7 +69,7 @@ const Home = () => {
   };
 
   return (
-    <>
+    <section>
       <Analytics />
       <div className='h-screen flex flex-col'>
         <div className="flex justify-center items-center h-full">
@@ -130,7 +130,7 @@ const Home = () => {
         <Ad />
 
       </div>
-    </>
+    </section>
   );
 };
 

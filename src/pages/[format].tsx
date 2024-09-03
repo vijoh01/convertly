@@ -112,21 +112,21 @@ const ImageConverter = ({ fromWiki, toWiki }:any) => {
   console.log(selectedTo);
 
   return (
-    <>
+    <section>
       <head>
         <title>{`Convert ${from.toUpperCase()} to ${to.toUpperCase()} Online - Fast Image Converter | Convertly`}</title>
         <meta name="description" content={`Convert ${from.toUpperCase()} to ${to.toUpperCase()} images online for free. Quick, easy, and high-quality image conversion with Convertly.`} />
         <meta name="keywords" content={`convert ${from}, ${from} to ${to}, convert ${from} to ${to}, from ${from} to ${to}, convert image, online converter`} />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={`https://convertly.org/${format}`} />
+        <link rel="canonical" href={`https://www.convertly.org/${format}`} />
         <meta name="google-adsense-account" content={'ca-pub-3356299841997010'} />
 
-        <link rel="alternate" href="https://convertly.org" hrefLang="en" />
+        <link rel="alternate" href="https://www.convertly.org" hrefLang="en" />
         
-        <link rel="alternate" href="https://convertly.org/png-to-jpeg" hrefLang="en" /> 
-        <link rel="alternate" href="https://convertly.org/jpeg-to-png" hrefLang="en" /> 
-        <link rel="alternate" href="https://convertly.org/bmp-to-png" hrefLang="en" /> 
-        <link rel="alternate" href="https://convertly.org/png-to-webp" hrefLang="en" />
+        <link rel="alternate" href="https://www.convertly.org/png-to-jpeg" hrefLang="en" /> 
+        <link rel="alternate" href="https://www.convertly.org/jpeg-to-png" hrefLang="en" /> 
+        <link rel="alternate" href="https://www.convertly.org/bmp-to-png" hrefLang="en" /> 
+        <link rel="alternate" href="https://www.convertly.org/png-to-webp" hrefLang="en" />
         <link rel="sitemap" href="https://www.convertly.org/sitemap-0.xml" type="application/xml" />
         <script
           async
@@ -209,7 +209,7 @@ const ImageConverter = ({ fromWiki, toWiki }:any) => {
             )}
         </div>
       </div>
-    </>
+    </section>
   );
 }
 

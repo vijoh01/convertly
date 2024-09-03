@@ -25,13 +25,13 @@ const RootLayout = ({ metadata = {}, children }: any) => {
         <meta name="description" content={mergedMetadata.description || ''} />
         <meta name="keywords" content={mergedMetadata.keywords || ''} />
         <meta name="robots" content={mergedMetadata.robots || ''} />
-        <link rel="canonical" href={'https://convertly.org'} />
+        <link rel="canonical" href={'https://www.convertly.org'} />
 
         <meta name="google-adsense-account" content={'ca-pub-3356299841997010'} />
-        <link rel="alternate" href="https://convertly.org/png-to-jpeg" hrefLang="en" /> 
-        <link rel="alternate" href="https://convertly.org/jpeg-to-png" hrefLang="en" /> 
-        <link rel="alternate" href="https://convertly.org/bmp-to-png" hrefLang="en" /> 
-        <link rel="alternate" href="https://convertly.org/png-to-webp" hrefLang="en" />
+        <link rel="alternate" href="https://www.convertly.org/png-to-jpeg" hrefLang="en" /> 
+        <link rel="alternate" href="https://www.convertly.org/jpeg-to-png" hrefLang="en" /> 
+        <link rel="alternate" href="https://www.convertly.org/bmp-to-png" hrefLang="en" /> 
+        <link rel="alternate" href="https://www.convertly.org/png-to-webp" hrefLang="en" />
         <link rel="sitemap" href="https://www.convertly.org/sitemap-0.xml" type="application/xml" />
 
         <script
